@@ -139,7 +139,6 @@ scene.add(floor);
 scene.add(roof);
 roof.position.y = 20;
 
-
 //Walls
 const wallGeometry = new THREE.BoxGeometry(1, 20, 40);
 const wallGeometry2 = new THREE.BoxGeometry(40, 20, 1);
@@ -265,7 +264,6 @@ scene.add(pointLight15);
 scene.add(pointLight16);
 scene.add(pointLight17);
 
-
 //plane
 const planeGeometry = new THREE.PlaneGeometry(2, 2);
 const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x3de8ff, side: THREE.DoubleSide });
@@ -312,16 +310,15 @@ const portalLight2 = createPointLight(-12, 6, -2, 0xFFA500, 10, 900);
 scene.add(portalLight);
 scene.add(portalLight2);
 
+//Particles
 let stars, starGeo;
-
-// Define the area where particles will be confined
 const areaSize = 7;
 
 particles();
 
 function particles() {
     const points = [];
-    const position = new THREE.Vector3(-12, 0, 3); // Specify the desired position
+    const position = new THREE.Vector3(-12, 0, 3);
 
     for (let i = 0; i < 60; i++) {
         let star = new THREE.Vector3(
@@ -347,18 +344,15 @@ function particles() {
 }
 
 function animateParticles() {
-
     for (let i = 0; i < starGeo.attributes.position.array.length; i += 3) {
-        starGeo.attributes.position.array[i + 1] += 0.1; // Move particles upwards
+        starGeo.attributes.position.array[i + 1] += 0.1; 
 
-        // If particle reaches the top, reset its position near the top
         if (starGeo.attributes.position.array[i + 1] > 14) {
             starGeo.attributes.position.array[i + 1] = Math.random() * 2;
         }
     }
     starGeo.attributes.position.needsUpdate = true;
 }
-
 
 //First Person
 const fpControls = new FirstPersonControls(camera, renderer.domElement);
@@ -376,7 +370,6 @@ function animate() {
     animateParticles();
 
     if (cube) {
-        // Move the cube towards the target position
         cube.position.x += (targetX - cube.position.x) * 0.01;
         cube.position.z += (targetZ - cube.position.z) * 0.01;
     }
